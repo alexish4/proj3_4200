@@ -17,7 +17,9 @@ public class FourDemo {
         }
         System.out.println("Seperation");
         FourInALine gameDemo = new FourInALine();
+        gameDemo.printBoard();
         gameDemo.assignRow();
+        gameDemo.printBoard();
         System.out.println(gameDemo.getRowLocation() + " is row " + gameDemo.getColumnLocation() + " is column");
         System.out.println(gameDemo.checkIfTerminal(test));
     }

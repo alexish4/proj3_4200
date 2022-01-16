@@ -34,27 +34,28 @@ public class FourInALine {
                 loopAgain = false;
         } while (loopAgain);
         keyboard.close();
-        int row = 0;
+        int column = 0;
         if (locationInput.charAt(0) == 'a') //enumerating
-            row = 0;
+            column = 0;
         else if (locationInput.charAt(0) == 'b')
-            row = 1;
+            column = 1;
         else if (locationInput.charAt(0) == 'c')
-            row = 2;
+            column = 2;
         else if (locationInput.charAt(0) == 'd')
-            row = 3;
+            column = 3;
         else if (locationInput.charAt(0) == 'e')
-            row = 4;
+            column = 4;
         else if (locationInput.charAt(0) == 'f')
-            row = 5;
+            column = 5;
         else if (locationInput.charAt(0) == 'g')
-            row = 6;
+            column = 6;
         else if (locationInput.charAt(0) == 'h')
-            row = 7;
+            column = 7;
         
-        int column = Integer.parseInt(String.valueOf(locationInput.charAt(1))) - 1;
+        int row = Integer.parseInt(String.valueOf(locationInput.charAt(1))) - 1;
         setRowLocation(row);
         setColumnLocation(column);
+        matrix[row][column] = 'X';
     }
     public boolean checkLocation(String locationInput) { //checking if input is valid
         boolean okay = true;
@@ -80,11 +81,13 @@ public class FourInALine {
     }
     public void printBoard() {
         for (int i = 0; i < matrix.length; i++) {
+            System.out.print((i+1) + " ");
             for (int j = 0; j < matrix[0].length; j++) {
                 System.out.print(matrix[i][j] + " ");
             }
             System.out.println();
         }
+        System.out.println(" A B C D E F G H");
     }
     public boolean checkIfTerminal(char [][] test) { //need to test
         boolean terminal = false;

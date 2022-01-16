@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 public class FourDemo {
     public static void main(String[] args) throws FileNotFoundException {
-        char [][] test = { {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}, {'X', 'X', 'X', 'X', 'X', ' ', ' ', ' '}, {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}, {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+        char [][] test = { {'X', ' ', ' ', ' ', ' ', ' ', ' ', ' '}, {'X', 'X', 'X', ' ', ' ', ' ', ' ', ' '}, {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}, {'X', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
         {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}, {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}, {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}  };
         for (int i = 0; i < test.length; i++) {
             for(int j = 0; j < test[i].length; j++) {
@@ -17,6 +17,8 @@ public class FourDemo {
         }
         System.out.println("Seperation");
         FourInALine gameDemo = new FourInALine();
+        gameDemo.assignRow();
+        System.out.println(gameDemo.getRowLocation() + " is row " + gameDemo.getColumnLocation() + " is column");
         System.out.println(gameDemo.checkIfTerminal(test));
     }
     

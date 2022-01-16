@@ -106,6 +106,10 @@ public class FourInALine {
                         if(column != j && test[row][column] == 'X') 
                             countIndex++;
                     }
+                    if (countIndex >= 3)
+                        terminal = true; // if count index equals 4
+                    
+                    countIndex = 0; //reset for vertical
                     row = i;
                     column = j;
                     for (; row >= 0; row--) { //counting North
@@ -132,21 +136,32 @@ public class FourInALine {
                     int row = i;
                     int column = j;
                     for (; column >= 0; column--) { //counting west
-                        if(column != j && test[i][j] == 'O') 
+                        if(column != j && test[row][column] == 'O') 
                             countIndex++;
                     }
                     row = i;
                     column = j;
                     for (column = j; column < matrix.length; column++) { //counting east
-                        if(column != j && test[i][j] == 'O') 
+                        if(column != j && test[row][column] == 'O') 
+                            countIndex++;
+                    }
+                    if (countIndex >= 3)
+                    terminal = true; // if count index equals 4
+
+                    countIndex = 0; //reset for vertical
+                    row = i;
+                    column = j;
+                    for (; row >= 0; row--) { //counting North
+                        if(row != i && test[row][column] == 'O') 
                             countIndex++;
                     }
                     row = i;
                     column = j;
-                    for (; row >= 0; row--) { //counting North
-                        if(row != i && test[i][j] == 'O') 
+                    for (row = i; row < matrix.length; row++) { //counting North
+                        if(row != i && test[row][column] == 'O') 
                             countIndex++;
                     }
+                    System.out.println(i + " is i " + j + " is j " + countIndex + " is countIndex");
                 }
                 if (countIndex >= 3)
                     terminal = true; // if count index equals 4

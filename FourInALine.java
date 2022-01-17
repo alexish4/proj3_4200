@@ -183,7 +183,7 @@ public class FourInALine {
         }
         return terminal;
     }
-     public List<String> alphaBeta(char[][] currentState)
+     public List<char [][]> alphaBeta(char[][] currentState)
     {
         int v;
         v=maxValue(currentState,lowerBound,upperBound);
@@ -201,8 +201,9 @@ public class FourInALine {
         }
         v = lowerBound;
         for(int i=0; i<successor(state).size();i++)
-        {
-            v = Math.max(v,minValue(state,alpha,beta));
+        {   
+            char [][] successorState = successor(state).get(i);
+            v = Math.max(v,minValue(successorState,alpha,beta));
         }
         if(v>=beta)
         {
@@ -273,29 +274,31 @@ public class FourInALine {
         
     }
 
-    public List<String> successor(char [][] state) {
+    public List<char [][]> successor(char [][] state) {
         // for (int i = 0; i < matrix.length; i++) { 
         //     for (int j = 0; j < matrix[0].length; j++) {
         //         matrix[i][j] = ' ';
         //     }
         // }
-        List <String> successors = new ArrayList<String>();
-        char [][] aSuccessor = new char [8][8];
+        List <char [][]> successors = new ArrayList<char [][]>();
+        //char [][] aSuccessor = new char [8][8];
         for (int i = 0; i < state.length; i++) {
             for (int j = 0; j < state[0].length; j++) {
                 if (state[i][j] == ' ') {
+                    char [][] aSuccessor = new char [8][8];
                     for (int row = 0; row < aSuccessor.length; row++) {
                         for(int column = 0; column < aSuccessor[0].length; column++) {
                             aSuccessor[row][column] = state[row][column];
                         }
                     }
                     aSuccessor [i][j] = 'O';
-                    successors.add(Arrays.deepToString(aSuccessor));
+                    successors.add(aSuccessor);
                 }
             }
         }
+        System.out.println(successors.size() + " is the size");
         for (int i = 0; i < 4; i++)
-            System.out.println(successors.get(i));
+            System.out.println(Arrays.deepToString(successors.get(i)));
         return successors;
     }
 }

@@ -10,6 +10,8 @@ public class FourInALine {
     private int rowLocation = 0;
     private int columnLocation = 0;
     private int utility = 100;
+    private int lowerBound = -9999;
+    private int upperBound = 9999;
     
     public int getRowLocation() {
         return rowLocation;
@@ -180,17 +182,13 @@ public class FourInALine {
         }
         return terminal;
     }
-     public char[][] alphaBeta(char[][] currentState)
+     public List<String> alphaBeta(char[][] currentState)
     {
         int v;
         v=maxValue(currentState,lowerBound,upperBound);
-        return successor;
+        return successor(currentState);
     }
-    public char[][] successor(char[][] initialBoard)
-    {
-        return initialBoard;
 
-    }
 
     public int maxValue(char[][] state, int alpha, int beta)
     {
@@ -201,7 +199,10 @@ public class FourInALine {
             return utility(state);
         }
         v = lowerBound;
-
+        for(int i=0; i<successor(state).size();i++)
+        {
+            v = max(v,minValue(i,alpha,beta));
+        }
 
         return utility;
     }

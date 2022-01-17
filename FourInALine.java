@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
+
 public class FourInALine {
     private char [][] matrix = new char[8][8];
     private int rowLocation = 0;
@@ -201,9 +202,14 @@ public class FourInALine {
         v = lowerBound;
         for(int i=0; i<successor(state).size();i++)
         {
-            v = max(v,minValue(i,alpha,beta));
+            v = Math.max(v,minValue(state,alpha,beta));
         }
+        if(v>=beta)
+        {
+            return v;
 
+        }
+        alpha = Math.max(alpha,v);
         return utility;
     }
     public int minValue(char[][] state, int alpha, int beta)
@@ -215,8 +221,16 @@ public class FourInALine {
             return utility(state);
         }
         v = upperBound;
+        for(int i=0; i<successor(state).size();i++)
+        {
+            v = Math.min(v,maxValue(state,alpha,beta));
+        }
 
-
+        if( v <= alpha)
+        {
+            return v;
+        }
+        beta = Math.min(beta,v);
         return utility;
     }
     public int utility(char[][] state)

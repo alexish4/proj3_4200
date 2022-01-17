@@ -1,9 +1,11 @@
 import java.util.Scanner;
+import java.util.HashSet;
 
 public class FourInALine {
     private char [][] matrix = new char[8][8];
     private int rowLocation = 0;
     private int columnLocation = 0;
+    private int utility = 100;
     
     public int getRowLocation() {
         return rowLocation;
@@ -18,9 +20,9 @@ public class FourInALine {
         this.columnLocation = columnLocation;
     }
     
-    public void assignRow() { //marking location according to user input
+    public void assignRow(boolean minOrMax) { //marking location according to user input
         Scanner keyboard = new Scanner(System.in);
-        String locationInput;
+        String locationInput = " ";
         boolean loopAgain = false;
         
         do { //get input and use checklocation method to see if input is valid if not we keep looping until valid
@@ -55,7 +57,10 @@ public class FourInALine {
         int row = Integer.parseInt(String.valueOf(locationInput.charAt(1))) - 1;
         setRowLocation(row);
         setColumnLocation(column);
-        matrix[row][column] = 'X';
+        if (!minOrMax)
+            matrix[row][column] = 'X';
+        else
+            matrix[row][column] = 'O';
     }
     public boolean checkLocation(String locationInput) { //checking if input is valid
         boolean okay = true;
@@ -65,9 +70,9 @@ public class FourInALine {
         && locationInput.charAt(0) != 'g' && locationInput.charAt(0) != 'h') {
             okay = false;
         }
-        int column = Integer.parseInt(String.valueOf(locationInput.charAt(1))); //turning second char to int
+        int row = Integer.parseInt(String.valueOf(locationInput.charAt(1))); //turning second char to int
 
-        if (column < 1 || column > 8)
+        if (row < 1 || row > 8)
             okay = false;
         if (locationInput.length() > 2)
             return false;
@@ -83,11 +88,11 @@ public class FourInALine {
         for (int i = 0; i < matrix.length; i++) {
             System.out.print((i+1) + " ");
             for (int j = 0; j < matrix[0].length; j++) {
-                System.out.print(matrix[i][j] + " ");
+                System.out.print(matrix[i][j] + "  ");
             }
             System.out.println();
         }
-        System.out.println(" A B C D E F G H");
+        System.out.println("  A B C D E F G H");
     }
     public boolean checkIfTerminal(char [][] test) { //need to test
         boolean terminal = false;

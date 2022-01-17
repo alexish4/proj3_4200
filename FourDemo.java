@@ -15,34 +15,31 @@ public class FourDemo {
             }
             System.out.println();
         }
+
         System.out.println("Seperation");
+        FourDemo demo = new FourDemo();
+        boolean minOrMaxChoice = demo.maxOrMin();
         FourInALine gameDemo = new FourInALine();
         gameDemo.printBoard();
-        gameDemo.assignRow();
+        gameDemo.assignRow(minOrMaxChoice);
         gameDemo.printBoard();
         System.out.println(gameDemo.getRowLocation() + " is row " + gameDemo.getColumnLocation() + " is column");
         System.out.println(gameDemo.checkIfTerminal(test));
     }
+    public boolean maxOrMin() {
+        Scanner keyboard = new Scanner(System.in);
+        String firstInput = " "; //initialized string
+        do { //Seeing if the user wants to go first
+            if (!firstInput.equals("Y") && !firstInput.equals("N")) //if user entered incorrectly when loop back error message
+                System.out.println("Invalid input please enter correctly");
+            System.out.print("Would you like to go first? (Y or N) ");
+            firstInput = keyboard.nextLine();
+        } while (!firstInput.equals("Y") && !firstInput.equals("N"));
+        boolean maxOrMin = false; //if true then max
+        if(firstInput.equals("N"))
+            maxOrMin = true; //if false then min
+        return maxOrMin;
+    }
     
-    public int[][] readFile(int ROWS, int COLUMNS) throws FileNotFoundException {
-        int[][] numArray = new int[ROWS][COLUMNS];
-        Scanner sc = new Scanner(choseTextFile());
-        while (sc.hasNextLine()) {
-            for (int i = 0; i < numArray.length; i++) {
-                String[] line = sc.nextLine().trim().split(" ");
-                for (int j = 0; j < line.length; j++) {
-                    numArray[i][j] = Integer.parseInt(line[j]);
-                }
-            }
-        }
-        return numArray;
-    }
 
-    private static File choseTextFile() {
-        FileDialog dialog = new FileDialog((Frame) null, "Select File To Open");
-        dialog.setMode(FileDialog.LOAD);
-        dialog.setVisible(true);
-        File[] file = dialog.getFiles();
-        return file[0];
-    }
 }

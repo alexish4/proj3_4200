@@ -183,6 +183,11 @@ public class FourInALine {
     }
     public void successor(char [][] state) {
         int limit = 0; //initialized to zero
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                
+            }
+        }
         List <char [][]> successors = new ArrayList<char [][]>();
         char [][] aSuccessor = new char [8][8];
         for (int i = 0; i < state.length; i++) {

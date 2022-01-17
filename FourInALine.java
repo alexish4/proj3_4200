@@ -61,10 +61,10 @@ public class FourInALine {
         int row = Integer.parseInt(String.valueOf(locationInput.charAt(1))) - 1;
         setRowLocation(row);
         setColumnLocation(column);
-        if (!minOrMax)
-            matrix[row][column] = 'X';
-        else
-            matrix[row][column] = 'O';
+        //if (!minOrMax)
+        matrix[row][column] = 'X';
+        // else
+        //     matrix[row][column] = 'O';
     }
     public boolean checkLocation(String locationInput) { //checking if input is valid
         boolean okay = true;
@@ -134,7 +134,6 @@ public class FourInALine {
                         if(row != i && test[row][column] == 'X') 
                             countIndex++;
                     }
-                    System.out.println(i + " is i " + j + " is j " + countIndex + " is countIndex");
                 }
                 if (countIndex >= 3)
                     terminal = true; // if count index equals 4
@@ -260,22 +259,19 @@ public class FourInALine {
     }
 
     public List<String> successor(char [][] state) {
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[0].length; j++) {
-                matrix[i][j] = ' ';
-            }
-        }
+        // for (int i = 0; i < matrix.length; i++) { 
+        //     for (int j = 0; j < matrix[0].length; j++) {
+        //         matrix[i][j] = ' ';
+        //     }
+        // }
         List <String> successors = new ArrayList<String>();
         char [][] aSuccessor = new char [8][8];
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[0].length; j++) {
-                //System.out.println(i + " is i " + j + " is j");
-                if (matrix[i][j] == ' ') {
-                    //System.out.println(i + " is i " + j + " is j");
-                    //aSuccessor = state.clone();
+        for (int i = 0; i < state.length; i++) {
+            for (int j = 0; j < state[0].length; j++) {
+                if (state[i][j] == ' ') {
                     for (int row = 0; row < aSuccessor.length; row++) {
                         for(int column = 0; column < aSuccessor[0].length; column++) {
-                            aSuccessor[row][column] = matrix[row][column];
+                            aSuccessor[row][column] = state[row][column];
                         }
                     }
                     aSuccessor [i][j] = 'O';
@@ -283,12 +279,8 @@ public class FourInALine {
                 }
             }
         }
-        
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; i++)
             System.out.println(successors.get(i));
-            System.out.println();
-            System.out.println();
-        }
         return successors;
     }
 }

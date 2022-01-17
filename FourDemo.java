@@ -25,7 +25,7 @@ public class FourDemo {
         gameDemo.printBoard();
         System.out.println(gameDemo.getRowLocation() + " is row " + gameDemo.getColumnLocation() + " is column");
         System.out.println(gameDemo.checkIfTerminal(test));
-        gameDemo.successor();
+        gameDemo.successor(test);
     }
     public boolean maxOrMin() {
         Scanner keyboard = new Scanner(System.in);

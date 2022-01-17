@@ -1,5 +1,9 @@
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 
 public class FourInALine {
     private char [][] matrix = new char[8][8];
@@ -176,5 +180,24 @@ public class FourInALine {
             }
         }
         return terminal;
+    }
+    public void successor(char [][] state) {
+        int limit = 0; //initialized to zero
+        List <char [][]> successors = new ArrayList<char [][]>();
+        char [][] aSuccessor = new char [8][8];
+        for (int i = 0; i < state.length; i++) {
+            for (int j = 0; j < state[i].length; j++) {
+                if (state[i][j] == ' ') {
+                    aSuccessor = state.clone();
+                    aSuccessor [i][j] = 'O';
+                    successors.add(aSuccessor);
+                }
+            }
+        }
+        System.out.println(successors.size() + " is size of list");
+        for (int i = 0; i < 8; i++) {
+            System.out.println(Arrays.deepToString(successors.get(i)));
+        }
+
     }
 }

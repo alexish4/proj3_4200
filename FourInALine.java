@@ -181,28 +181,36 @@ public class FourInALine {
         }
         return terminal;
     }
-    public void successor(char [][] state) {
-        int limit = 0; //initialized to zero
+    public List<String> successor(char [][] state) {
         for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                
+            for (int j = 0; j < matrix[0].length; j++) {
+                matrix[i][j] = ' ';
             }
         }
-        List <char [][]> successors = new ArrayList<char [][]>();
+        List <String> successors = new ArrayList<String>();
         char [][] aSuccessor = new char [8][8];
-        for (int i = 0; i < state.length; i++) {
-            for (int j = 0; j < state[i].length; j++) {
-                if (state[i][j] == ' ') {
-                    aSuccessor = state.clone();
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                //System.out.println(i + " is i " + j + " is j");
+                if (matrix[i][j] == ' ') {
+                    //System.out.println(i + " is i " + j + " is j");
+                    //aSuccessor = state.clone();
+                    for (int row = 0; row < aSuccessor.length; row++) {
+                        for(int column = 0; column < aSuccessor[0].length; column++) {
+                            aSuccessor[row][column] = matrix[row][column];
+                        }
+                    }
                     aSuccessor [i][j] = 'O';
-                    successors.add(aSuccessor);
+                    successors.add(Arrays.deepToString(aSuccessor));
                 }
             }
         }
-        System.out.println(successors.size() + " is size of list");
-        for (int i = 0; i < 8; i++) {
-            System.out.println(Arrays.deepToString(successors.get(i)));
+        
+        for (int i = 0; i < 4; i++) {
+            System.out.println(successors.get(i));
+            System.out.println();
+            System.out.println();
         }
-
+        return successors;
     }
 }

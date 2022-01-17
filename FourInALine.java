@@ -4,6 +4,10 @@ public class FourInALine {
     private char [][] matrix = new char[8][8];
     private int rowLocation = 0;
     private int columnLocation = 0;
+
+
+    private int lowerBound = -9999;
+    private int upperBound = 9999;
     
     public int getRowLocation() {
         return rowLocation;
@@ -35,6 +39,7 @@ public class FourInALine {
         } while (loopAgain);
         keyboard.close();
         int column = 0;
+        
         if (locationInput.charAt(0) == 'a') //enumerating
             column = 0;
         else if (locationInput.charAt(0) == 'b')
@@ -79,10 +84,11 @@ public class FourInALine {
         // }
         return okay;
     }
-    public void printBoard() {
+   public void printBoard() {
         for (int i = 0; i < matrix.length; i++) {
-            System.out.print((i+1) + " ");
+            System.out.print((i+1));
             for (int j = 0; j < matrix[0].length; j++) {
+                
                 System.out.print(matrix[i][j] + " ");
             }
             System.out.println();
@@ -172,4 +178,84 @@ public class FourInALine {
         }
         return terminal;
     }
+
+    public char[][] alphaBeta(char[][] currentState)
+    {
+        int v;
+        v=maxValue(currentState,lowerBound,upperBound);
+        return successor;
+    }
+    public char[][] successor(char[][] initialBoard)
+    {
+        return initialBoard;
+
+    }
+
+    public int maxValue(char[][] state, int alpha, int beta)
+    {
+        int utility = 0;
+        int v;
+        if(checkIfTerminal(state) == true)
+        {
+            return utility(state);
+        }
+        v = lowerBound;
+
+
+        return utility;
+    }
+    public int minValue(char[][] state, int alpha, int beta)
+    {
+        int utility = 0;
+        int v;
+        if(checkIfTerminal(state) == true)
+        {
+            return utility(state);
+        }
+        v = upperBound;
+
+
+        return utility;
+    }
+    public int utility(char[][] state)
+    {
+        
+        int xCounter = 0;
+        int oCounter = 0;
+        for(int i=0;i<8;i++)
+        {
+            for(int j=0;j<8;j++)
+            {
+                if(state[i][j] == 'X')
+                {
+                    xCounter++;
+                }
+                else if(state[i][j] == 'O')
+                {
+                    oCounter++;
+                }
+                else
+                {
+                    continue;
+                }
+            
+            }
+         
+
+        }
+        if(xCounter > oCounter)
+        {
+            return 1;
+        }
+        else if(xCounter < oCounter)
+        {
+            return -1;
+        }
+        else{
+            return 0;
+        }
+        
+    }
+
+
 }

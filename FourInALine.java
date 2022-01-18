@@ -224,7 +224,8 @@ public class FourInALine {
         v = upperBound;
         for(int i=0; i<successor(state).size();i++)
         {
-            v = Math.min(v,maxValue(state,alpha,beta));
+            char [][] successorState = successor(state).get(i);
+            v = Math.min(v,maxValue(successorState,alpha,beta));
         }
 
         if( v <= alpha)
